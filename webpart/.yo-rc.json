@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.6.0",
+    "libraryName": "footer-editor-web-part",
+    "libraryId": "e7f4bc18-cd8b-4563-bfff-f8e8a775af95",
+    "packageManager": "npm",
+    "componentType": "webpart"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "footer-editor-web-part-client-side-solution",
+    "id": "e7f4bc18-cd8b-4563-bfff-f8e8a775af95",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/footer-editor-web-part.sppkg"
+  }
+}
