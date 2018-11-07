@@ -11,6 +11,8 @@ define([], function () {
     "NewTitle": "New Title",
     "HoverText": "Text showing on hover",
     "AddLinksButton": "Add links",
-    "ListOfLinks": "List of links"
+    "ListOfLinks": "List of links",
+    "NewTab": "Open in new tab",
+    "FabricIcon": "Fabric Icon"
   }
 });

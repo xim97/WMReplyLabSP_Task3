@@ -1,5 +1,6 @@
 define([], function() {
   return {
-    "Title": "FooterEditorAppCustomizerApplicationCustomizer"
+    "Title": "FooterEditorAppCustomizerApplicationCustomizer",
+    "NothingToShow": "There isn't any settings"
   }
 });

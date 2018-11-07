@@ -11,6 +11,8 @@ declare interface IFooterEditorWebPartWebPartStrings {
   HoverText: string;
   AddLinksButton: string;
   ListOfLinks: string;
+  NewTab: string;
+  FabricIcon: string;
 }
 
 declare module 'FooterEditorWebPartWebPartStrings' {

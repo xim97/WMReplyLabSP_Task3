@@ -23,7 +23,6 @@ import FooterEditorWebPart from './components/FooterEditorWebPart';
 import { IFooterEditorWebPartProps } from './components/IFooterEditorWebPartProps';
 
 export interface IFooterEditorWebPartWebPartProps {
-  description1: string;
   newGroupTitle: string;
   groups: Array<IGroup>;
 }
@@ -31,7 +30,15 @@ export interface IFooterEditorWebPartWebPartProps {
 export interface IGroup {
   title: string;
   properties: Array<string>;
-  links: Array<any>;
+  links: Array<ILink>;
+}
+
+export interface ILink {
+  url: string;
+  title?: string;
+  hoverText?: string;
+  fabricIcon?: string;
+  newTab?: boolean;
 }
 
 export default class FooterEditorWebPartWebPart extends BaseClientSideWebPart<IFooterEditorWebPartWebPartProps> {
@@ -47,6 +54,14 @@ export default class FooterEditorWebPartWebPart extends BaseClientSideWebPart<IF
     {
       key: "hoverText",
       text: strings.HoverText
+    },
+    {
+      key: "newTab",
+      text: strings.NewTab
+    },
+    {
+      key: "fabricIcon",
+      text: strings.FabricIcon
     }
   ];
 
@@ -54,7 +69,9 @@ export default class FooterEditorWebPartWebPart extends BaseClientSideWebPart<IF
     const element: React.ReactElement<IFooterEditorWebPartProps> = React.createElement(
       FooterEditorWebPart,
       {
-        description: this.properties.description1
+        displayMode: this.displayMode,
+        data: this.properties.groups,
+        groupProperties: this.groupProperties
       }
     );
 
@@ -165,14 +182,16 @@ export default class FooterEditorWebPartWebPart extends BaseClientSideWebPart<IF
 
   private generateGroupFieldsForGroupPage(group: IGroup, index: number): Array<IPropertyPaneField<any>> {
     let fields: Array<IPropertyPaneField<any>> = [];
-    fields.push(
-      PropertyFieldMultiSelect(`groups[${index}].properties`, {
-        key: `groups[${index}].properties`,
-        label: "Multi select field",
-        options: this.groupProperties,
-        selectedKeys: this.properties.groups[index].properties
-      })
-    );
+    if (index > 1) {
+      fields.push(
+        PropertyFieldMultiSelect(`groups[${index}].properties`, {
+          key: `groups[${index}].properties`,
+          label: "Multi select field",
+          options: this.groupProperties,
+          selectedKeys: this.properties.groups[index].properties
+        })
+      );
+    }
     fields.push(
       PropertyFieldCollectionData(`groups[${index}].links`, {
         key: `groups[${index}].links`,
@@ -226,6 +245,23 @@ export default class FooterEditorWebPartWebPart extends BaseClientSideWebPart<IF
             id: "hoverText",
             title: strings.HoverText,
             type: CustomCollectionFieldType.string,
+            required: true
+          });
+          break;
+        }
+        case "newTab": {
+          fields.push({
+            id: "newTab",
+            title: strings.NewTab,
+            type: CustomCollectionFieldType.boolean
+          });
+          break;
+        }
+        case "fabricIcon": {
+          fields.push({
+            id: "fabricIcon",
+            title: strings.FabricIcon,
+            type: CustomCollectionFieldType.fabricIcon,
             required: true
           });
           break;

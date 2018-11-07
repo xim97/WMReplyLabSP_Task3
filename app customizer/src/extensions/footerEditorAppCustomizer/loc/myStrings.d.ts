@@ -1,5 +1,6 @@
 declare interface IFooterEditorAppCustomizerApplicationCustomizerStrings {
   Title: string;
+  NothingToShow: string;
 }
 
 declare module 'FooterEditorAppCustomizerApplicationCustomizerStrings' {

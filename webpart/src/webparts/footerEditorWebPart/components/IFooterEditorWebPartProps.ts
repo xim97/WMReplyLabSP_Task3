@@ -1,3 +1,8 @@
+import { IGroup } from "../FooterEditorWebPartWebPart";
+import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+
 export interface IFooterEditorWebPartProps {
-  description: string;
+  displayMode: number;
+  data: Array<IGroup>;
+  groupProperties: Array<IDropdownOption>;
 }
