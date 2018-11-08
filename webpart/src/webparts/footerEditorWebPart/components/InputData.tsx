@@ -31,6 +31,8 @@ export default class InputData extends React.Component<IInputDataProps, IInputDa
         this.handleClickPropertyCheckbox = this.handleClickPropertyCheckbox.bind(this);
 
         this.setNewInput = this.setNewInput.bind(this);
+
+        this.removeUnnesesaryProperties = this.removeUnnesesaryProperties.bind(this);
     }
 
     private handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -99,7 +101,7 @@ export default class InputData extends React.Component<IInputDataProps, IInputDa
         let data: Array<IGroup> = this.state.data;
         let groupIndex: string;
         let linkIndex: string;
-        [groupIndex, linkIndex] = target.id.split(":");        
+        [groupIndex, linkIndex] = target.id.split(":");
         let edittingLink: ILink = data[groupIndex].links[linkIndex];
         for (var property in data[groupIndex].properties) {
             edittingLink[data[groupIndex].properties[property]] = newLinkValue[data[groupIndex].properties[property]];
@@ -143,8 +145,8 @@ export default class InputData extends React.Component<IInputDataProps, IInputDa
             data[groupIndex].properties.push(property);
         } else {
             data[groupIndex].properties.splice(data[groupIndex].properties.indexOf(property), 1);
+            this.removeUnnesesaryProperties(groupIndex);
         }
-
         this.setState({ data: data });
     }
 
@@ -160,6 +162,23 @@ export default class InputData extends React.Component<IInputDataProps, IInputDa
             };
             this.setState({ inputs: inputs });
         }
+    }
+
+    private removeUnnesesaryProperties(groupIndex: string): void {
+        let data: Array<IGroup> = this.state.data;
+        for (let linkIndex = 0;
+            linkIndex < data[groupIndex].links.length;
+            linkIndex++) {
+            let currentLink: ILink = data[groupIndex].links[linkIndex];
+            for (var currentLinkProperty in currentLink) {
+                if (currentLink[currentLinkProperty] !== undefined &&
+                    currentLink[currentLinkProperty] !== "" &&
+                    data[groupIndex].properties.indexOf(currentLinkProperty) === -1) {
+                    delete currentLink[currentLinkProperty];
+                }
+            }
+        }
+        this.setState({ data: data });
     }
 
     public render(): React.ReactElement<IInputDataProps> {

@@ -3,7 +3,7 @@ import { ISelectionGroupPropertiesProps } from "./ISelectionGroupPropertiesProps
 import styles from './FooterEditorWebPart.module.scss';
 
 export default class SelectionGroupProperties extends React.Component<ISelectionGroupPropertiesProps, {}> {
-    public render(): React.ReactElement<ISelectionGroupPropertiesProps> {
+    public render(): React.ReactElement<ISelectionGroupPropertiesProps> {        
         return (
             <div>
                 {

@@ -26,7 +26,7 @@ export default class EditLink extends React.Component<IEditLinkProps, IEditLinkS
     private handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
         let target = event.target;
         let property: string;
-        property = target.id
+        property = target.id;
         let inputs: IInput = this.state.inputs;
         inputs[property] = target.type !== "checkbox" ? target.value : target.checked;
         this.setState({ inputs: inputs });

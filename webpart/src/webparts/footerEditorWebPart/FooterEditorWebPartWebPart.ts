@@ -94,8 +94,7 @@ export default class FooterEditorWebPartWebPart extends BaseClientSideWebPart<IF
         linkIndex < this.properties.groups[groupIndex].links.length;
         linkIndex++) {
         let currentLink: ILink = this.properties.groups[groupIndex].links[linkIndex];
-        for (var currentLinkProperty in currentLink) {
-          debugger;
+        for (var currentLinkProperty in currentLink) {         
           if (currentLink[currentLinkProperty] !== undefined &&
             currentLink[currentLinkProperty] !== "" &&
             this.properties.groups[groupIndex].properties.indexOf(currentLinkProperty) === -1) {
