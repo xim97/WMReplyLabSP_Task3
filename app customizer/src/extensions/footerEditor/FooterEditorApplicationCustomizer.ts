@@ -4,22 +4,25 @@ import {
   PlaceholderContent,
   PlaceholderName
 } from '@microsoft/sp-application-base';
-import * as strings from 'FooterEditorAppCustomizerApplicationCustomizerStrings';
+import * as strings from 'FooterEditorApplicationCustomizerStrings';
 import { IFooterProps } from './components/IFooterProps';
 import Footer from "./components/Footer";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IGroup } from "./components/IGroupProps";
 import { SPHttpClient, SPHttpClientResponse, SPHttpClientConfiguration } from '@microsoft/sp-http';
-//import pnp from "sp-pnp-js";
-export interface IFooterEditorAppCustomizerApplicationCustomizerProperties {
-  testMessage: string;
-}
+export interface IFooterEditorAppCustomizerApplicationCustomizerProperties { }
 import {
   sp,
   ClientSideWebpart,
   ClientSideWebpartPropertyTypes,
 } from "@pnp/sp";
+import styles from './components/FooterStyles.module.scss';
+
+require('sp-init');
+require('microsoft-ajax');
+require('sp-runtime');
+require('sharepoint');
 
 export default class FooterEditorAppCustomizerApplicationCustomizer
   extends BaseApplicationCustomizer<IFooterEditorAppCustomizerApplicationCustomizerProperties> {
@@ -27,7 +30,7 @@ export default class FooterEditorAppCustomizerApplicationCustomizer
   private data: Array<IGroup> = [];
   @override
   public onInit(): Promise<void> {
-    let data: Array<any> = [
+    this.data = [
       {
         title: "gr1",
         properties: ["title", "url"],
@@ -45,23 +48,23 @@ export default class FooterEditorAppCustomizerApplicationCustomizer
         ]
       }
     ];
-    this.data = data;
-    this.context.placeholderProvider.changedEvent.add(this, this.renderFooter);     
-
-    this.context.spHttpClient.get(`${this.context.pageContext.web.absoluteUrl}/_api/web/GetClientSideWebParts`,
+    this.context.placeholderProvider.changedEvent.add(this, this.renderFooter);
+    debugger;
+    this.context.spHttpClient.get(`${this.context.pageContext.web.absoluteUrl + "/sitepages/test.aspx"}/_api/web/GetClientSideWebParts`,
       SPHttpClient.configurations.v1)
       .then((response: SPHttpClientResponse) => {
-        response.json().then((responseJSON: any) => {          
+        response.json().then((responseJSON: any) => {
           let webpart: any = responseJSON.value.filter(item => item.Id === "{9738428e-ead4-42f8-a420-f7d2467761a8}".toUpperCase())[0];
           const part = ClientSideWebpart.fromComponentDef(webpart);
-          console.log(part.getProperties());        
+          console.log(part.getProperties());
         });
-      });   
+      });
+    
     return Promise.resolve();
   }
 
-  private renderFooter(): void {
 
+  private renderFooter(): void {
     if (!this.bottomPlaceholder) {
       this.bottomPlaceholder = this.context.placeholderProvider.tryCreateContent(
         PlaceholderName.Bottom,
@@ -74,7 +77,7 @@ export default class FooterEditorAppCustomizerApplicationCustomizer
       }
 
       if (this.properties) {
-        if (this.bottomPlaceholder.domElement) {
+        if (this.bottomPlaceholder.domElement && document.getElementsByClassName(styles.footerStyles).length === 0) {
           const footer: React.ReactElement<IFooterProps> = React.createElement(
             Footer,
             {

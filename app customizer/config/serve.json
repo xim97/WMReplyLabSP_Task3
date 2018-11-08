@@ -4,9 +4,9 @@
   "https": true,
   "serveConfigurations": {
     "default": {
-      "pageUrl": "https://myefdomain.sharepoint.com/sites/replylabtask3",
+      "pageUrl": "https://myefdomain.sharepoint.com/sites/replylabtask3/SitePages/test.aspx",
       "customActions": {
-        "8f2b4e39-14f1-495d-9a36-7fb0bd771fa2": {
+        "1a5db057-407d-42c4-b726-0af269954a37": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
             "testMessage": "Test message"
@@ -14,10 +14,10 @@
         }
       }
     },
-    "footerEditorAppCustomizer": {
-      "pageUrl": "https://myefdomain.sharepoint.com/sites/replylabtask3",
+    "footerEditor": {
+      "pageUrl": "https://myefdomain.sharepoint.com/sites/replylabtask3/SitePages/test.aspx",
       "customActions": {
-        "8f2b4e39-14f1-495d-9a36-7fb0bd771fa2": {
+        "1a5db057-407d-42c4-b726-0af269954a37": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
             "testMessage": "Test message"

@@ -1,4 +1,4 @@
-## footer-editor-app-customizer
+## footereditor
 
 This is where you include your WebPart documentation.
 

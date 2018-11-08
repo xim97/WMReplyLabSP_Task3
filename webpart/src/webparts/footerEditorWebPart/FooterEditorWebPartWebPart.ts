@@ -86,8 +86,29 @@ export default class FooterEditorWebPartWebPart extends BaseClientSideWebPart<IF
     return Version.parse('1.0');
   }
 
+  protected removeUnnesesaryProperties(): void {
+    for (let groupIndex = 0;
+      groupIndex < this.properties.groups.length;
+      groupIndex++) {
+      for (let linkIndex = 0;
+        linkIndex < this.properties.groups[groupIndex].links.length;
+        linkIndex++) {
+        let currentLink: ILink = this.properties.groups[groupIndex].links[linkIndex];
+        for (var currentLinkProperty in currentLink) {
+          debugger;
+          if (currentLink[currentLinkProperty] !== undefined &&
+            currentLink[currentLinkProperty] !== "" &&
+            this.properties.groups[groupIndex].properties.indexOf(currentLinkProperty) === -1) {
+            delete currentLink[currentLinkProperty];
+          }
+        }
+      }
+    }
+  }
+
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     let generatedPages: Array<IPropertyPanePage> = [];
+    this.removeUnnesesaryProperties();
     generatedPages.push(this.renderMainPageInPropertyPaneConfiguration());
     generatedPages.push(...this.renderGroupsPages());
 

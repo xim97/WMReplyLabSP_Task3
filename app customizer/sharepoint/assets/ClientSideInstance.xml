@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
     <ClientSideComponentInstance
-        Title="FooterEditorAppCustomizer"
+        Title="FooterEditor"
         Location="ClientSideExtension.ApplicationCustomizer"
-        ComponentId="8f2b4e39-14f1-495d-9a36-7fb0bd771fa2"
+        ComponentId="1a5db057-407d-42c4-b726-0af269954a37"
         Properties="{&quot;testMessage&quot;:&quot;Test message&quot;}">
     </ClientSideComponentInstance>
 </Elements>

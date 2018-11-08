@@ -2,7 +2,7 @@ import * as React from 'react';
 import styles from './FooterStyles.module.scss';
 import { IFooterProps } from './IFooterProps';
 import Group from "./Group";
-import * as strings from 'FooterEditorAppCustomizerApplicationCustomizerStrings';
+import * as strings from 'FooterEditorApplicationCustomizerStrings';
 
 export default class Footer extends React.Component<IFooterProps, {}> {
     public render(): React.ReactElement<IFooterProps> {
