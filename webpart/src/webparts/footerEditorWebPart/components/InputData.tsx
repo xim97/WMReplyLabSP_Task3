@@ -67,20 +67,23 @@ export default class InputData extends React.Component<IInputDataProps, IInputDa
         let inputs: Array<IInput> = this.state.inputs;
         let index: number = parseInt(target.id);
         let input: IInput = inputs[index];
-        data[index].links.push({
-            url: input.url,
-            title: input.title,
-            hoverText: input.hoverText,
-            fabricIcon: input.fabricIcon,
-            newTab: input.newTab
-        });
-        inputs[index] = {
-            url: "",
-            title: "",
-            hoverText: "",
-            fabricIcon: "",
-            newTab: false
-        };
+        if (data[index].properties.every(property => input[property].toString().trim() !== "")) {
+            data[index].links.push({
+                url: input.url,
+                title: input.title,
+                hoverText: input.hoverText,
+                fabricIcon: input.fabricIcon,
+                newTab: input.newTab
+            });
+            inputs[index] = {
+                url: "",
+                title: "",
+                hoverText: "",
+                fabricIcon: "",
+                newTab: false
+            };
+        }
+
         this.setState({ data: data, inputs: inputs });
     }
 
