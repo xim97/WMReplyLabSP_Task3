@@ -1,4 +1,4 @@
-import { IGroup } from "../FooterEditorWebPartWebPart";
+import { IGroup } from "../../FooterEditorWebPartWebPart";
 
 export interface ILinksProps {
     group: IGroup;

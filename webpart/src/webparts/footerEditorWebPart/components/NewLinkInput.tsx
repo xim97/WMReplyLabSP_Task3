@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { INewLinkInputProps } from "./INewLinkInputProps";
+import { INewLinkInputProps } from "./interfaces/INewLinkInputProps";
 import styles from './FooterEditorWebPart.module.scss';
 
 export default class NewLinkInput extends React.Component<INewLinkInputProps, {}> {

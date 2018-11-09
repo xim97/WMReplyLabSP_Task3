@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ILinksProps } from "./ILinksProps";
-import { ILinksState } from "./ILinkState";
+import { ILinksProps } from "./interfaces/ILinksProps";
+import { ILinksState } from "./interfaces/ILinkState";
 import EditLink from "./EditLink";
 
 export default class Links extends React.Component<ILinksProps, ILinksState> {

@@ -1,4 +1,4 @@
-import { IGroup } from "../FooterEditorWebPartWebPart";
+import { IGroup } from "../../FooterEditorWebPartWebPart";
 import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
 export interface IFooterEditorWebPartProps {

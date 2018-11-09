@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ISelectionGroupPropertiesProps } from "./ISelectionGroupPropertiesProps";
+import { ISelectionGroupPropertiesProps } from "./interfaces/ISelectionGroupPropertiesProps";
 import styles from './FooterEditorWebPart.module.scss';
 
 export default class SelectionGroupProperties extends React.Component<ISelectionGroupPropertiesProps, {}> {

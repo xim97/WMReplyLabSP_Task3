@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { IEditLinkProps } from "./IEditLinkProps";
-import { IEditLinkState } from "./IEditLinkState";
+import { IEditLinkProps } from "./interfaces/IEditLinkProps";
+import { IEditLinkState } from "./interfaces/IEditLinkState";
 import styles from "./FooterEditorWebPart.module.scss";
-import { IInput } from "./IInputDataState";
+import { IInput } from "./interfaces/IInputDataState";
 import { ILink } from '../FooterEditorWebPartWebPart';
 
 export default class EditLink extends React.Component<IEditLinkProps, IEditLinkState> {

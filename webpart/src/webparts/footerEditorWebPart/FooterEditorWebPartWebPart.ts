@@ -20,7 +20,7 @@ import { orderedLinks } from "./components/orderedLinks";
 
 import * as strings from 'FooterEditorWebPartWebPartStrings';
 import FooterEditorWebPart from './components/FooterEditorWebPart';
-import { IFooterEditorWebPartProps } from './components/IFooterEditorWebPartProps';
+import { IFooterEditorWebPartProps } from './components/interfaces/IFooterEditorWebPartProps';
 
 export interface IFooterEditorWebPartWebPartProps {
   newGroupTitle: string;

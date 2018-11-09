@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { INewGroupInputProps } from "./INewGroupInputProps";
+import { INewGroupInputProps } from "./interfaces/INewGroupInputProps";
 
 export default class NewGroupInput extends React.Component<INewGroupInputProps, {}> {
     public render(): React.ReactElement<INewGroupInputProps> {

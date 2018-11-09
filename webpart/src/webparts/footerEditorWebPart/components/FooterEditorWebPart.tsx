@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './FooterEditorWebPart.module.scss';
-import { IFooterEditorWebPartProps } from './IFooterEditorWebPartProps';
+import { IFooterEditorWebPartProps } from './interfaces/IFooterEditorWebPartProps';
 import InputData from "./InputData";
 
 export default class FooterEditorWebPart extends React.Component<IFooterEditorWebPartProps, {}> {

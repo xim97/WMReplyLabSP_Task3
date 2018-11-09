@@ -1,4 +1,4 @@
-import { IGroup } from "../FooterEditorWebPartWebPart";
+import { IGroup } from "../../FooterEditorWebPartWebPart";
 import { IInput } from "./IInputDataState";
 
 export interface INewLinkInputProps {

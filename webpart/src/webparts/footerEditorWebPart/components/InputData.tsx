@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './FooterEditorWebPart.module.scss';
-import { IInputDataProps } from './IInputDataProps';
-import { IInputDataState, IInput } from './IInputDataState';
+import { IInputDataProps } from './interfaces/IInputDataProps';
+import { IInputDataState, IInput } from './interfaces/IInputDataState';
 import { IGroup, ILink } from '../FooterEditorWebPartWebPart';
 import NewGroupInput from "./NewGroupInput";
 import SelectionGroupProperties from "./SelectionGroupProperties";
@@ -23,7 +23,6 @@ export default class InputData extends React.Component<IInputDataProps, IInputDa
         this.handleClickSaveEditButton = this.handleClickSaveEditButton.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleChangeInputNewGroupName = this.handleChangeInputNewGroupName.bind(this);
-        this.validateGroupName = this.validateGroupName.bind(this);
 
         this.handleClickUpButton = this.handleClickUpButton.bind(this);
         this.handleClickDownButton = this.handleClickDownButton.bind(this);
@@ -43,14 +42,6 @@ export default class InputData extends React.Component<IInputDataProps, IInputDa
         let inputs: Array<IInput> = this.state.inputs;
         inputs[parseInt(index, 10)][property] = target.type !== "checkbox" ? target.value : target.checked;
         this.setState({ inputs: inputs });
-    }
-
-    private validateGroupName(value: string): string {
-        this.setState({ newGroupTitle: value });
-        if (value === undefined || value.trim() === "") {
-            return "Name should be not empty";
-        }
-        return "";
     }
 
     private handleChangeInputNewGroupName(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -83,7 +74,14 @@ export default class InputData extends React.Component<IInputDataProps, IInputDa
             fabricIcon: input.fabricIcon,
             newTab: input.newTab
         });
-        this.setState({ data: data });
+        inputs[index] = {
+            url: "",
+            title: "",
+            hoverText: "",
+            fabricIcon: "",
+            newTab: false
+        };
+        this.setState({ data: data, inputs: inputs });
     }
 
     private handleClickDeleteLinkButton(event: React.MouseEvent<HTMLButtonElement>): void {
