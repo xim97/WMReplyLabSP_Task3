@@ -11,33 +11,7 @@
       ]
     }
   },
-  "externals": {
-    "sp-init": {
-      "path": "https://myefdomain.sharepoint.com/sites/replylabtask3/_layouts/15/init.js",
-      "globalName": "$_global_init"
-    },
-    "microsoft-ajax": {
-      "path": "https://myefdomain.sharepoint.com/sites/replylabtask3/_layouts/15/MicrosoftAjax.js",
-      "globalName": "Sys",
-      "globalDependencies": [
-        "sp-init"
-      ]
-    },
-    "sp-runtime": {
-      "path": "https://myefdomain.sharepoint.com/sites/replylabtask3/_layouts/15/SP.Runtime.js",
-      "globalName": "SP",
-      "globalDependencies": [
-        "microsoft-ajax"
-      ]
-    },
-    "sharepoint": {
-      "path": "https://myefdomain.sharepoint.com/sites/replylabtask3/_layouts/15/SP.js",
-      "globalName": "SP",
-      "globalDependencies": [
-        "sp-runtime"
-      ]
-    }
-  },
+  "externals": {},
   "localizedResources": {
     "FooterEditorApplicationCustomizerStrings": "lib/extensions/footerEditor/loc/{locale}.js"
   }

@@ -1,4 +1,3 @@
 export interface IFooterProps {
-    data: Array<any>;
-  }
-  
+  data: Array<any>;
+}

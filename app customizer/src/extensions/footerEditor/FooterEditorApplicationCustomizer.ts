@@ -12,55 +12,30 @@ import * as ReactDOM from 'react-dom';
 import { IGroup } from "./components/IGroupProps";
 import { SPHttpClient, SPHttpClientResponse, SPHttpClientConfiguration } from '@microsoft/sp-http';
 export interface IFooterEditorAppCustomizerApplicationCustomizerProperties { }
-import {
-  sp,
-  ClientSideWebpart,
-  ClientSideWebpartPropertyTypes,
-} from "@pnp/sp";
 import styles from './components/FooterStyles.module.scss';
 
-require('sp-init');
-require('microsoft-ajax');
-require('sp-runtime');
-require('sharepoint');
 
 export default class FooterEditorAppCustomizerApplicationCustomizer
   extends BaseApplicationCustomizer<IFooterEditorAppCustomizerApplicationCustomizerProperties> {
   private bottomPlaceholder: PlaceholderContent | undefined;
-  private data: Array<IGroup> = [];
+  private data: Array<Array<IGroup>> = [];
   @override
   public onInit(): Promise<void> {
-    this.data = [
-      {
-        title: "gr1",
-        properties: ["title", "url"],
-        links: [
-          { title: "3", url: "3.com" },
-          { title: "2", url: "2.com" },
-          { title: "1", url: "1.com" }]
-      },
-      {
-        title: "gr2",
-        properties: ["hoverText", "url"],
-        links: [
-          { hoverText: "2", url: "2.com" },
-          { hoverText: "1", url: "1.com" }
-        ]
-      }
-    ];
-    this.context.placeholderProvider.changedEvent.add(this, this.renderFooter);
 
-    this.context.spHttpClient.get(`${this.context.pageContext.web.absoluteUrl}/_api/web/GetClientSideWebParts`,
+    this.context.spHttpClient.get(`${this.context.pageContext.web.absoluteUrl}/sitepages/home.aspx/_api/web/GetClientSideWebParts`,
       SPHttpClient.configurations.v1)
       .then((response: SPHttpClientResponse) => {
         response.json().then((responseJSON: any) => {
+          let content: any = JSON.parse(responseJSON.page.Content.CanvasContent1);
+          let webparts: Array<any> = content.filter(item => item.webPartId === "9738428e-ead4-42f8-a420-f7d2467761a8");
+          webparts.forEach((webpart: any) => {
+            this.data.push(webpart.webPartData.properties.groups);
+          });
           debugger;
-          let webpart: any = responseJSON.value.filter(item =>
-            item.Id === "{9738428e-ead4-42f8-a420-f7d2467761a8}".toUpperCase())[0];
-          const part = ClientSideWebpart.fromComponentDef(webpart);
-          console.log(part.getProperties());
+          this.context.placeholderProvider.changedEvent.add(this, this.renderFooter);
         });
-      });    
+      });
+
     return Promise.resolve();
   }
 
