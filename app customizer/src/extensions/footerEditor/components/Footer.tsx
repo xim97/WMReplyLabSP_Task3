@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './FooterStyles.module.scss';
-import { IFooterProps } from './IFooterProps';
-import { IFooterState } from './IFooterState';
+import { IFooterProps } from './interfaces/IFooterProps';
+import { IFooterState } from './interfaces/IFooterState';
 import Group from "./Group";
 import * as strings from 'FooterEditorApplicationCustomizerStrings';
 

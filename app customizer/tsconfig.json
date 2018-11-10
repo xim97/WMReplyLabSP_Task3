@@ -16,9 +16,7 @@
     ],
     "types": [
       "es6-promise",
-      "webpack-env",
-      "microsoft-ajax",
-      "sharepoint"
+      "webpack-env"
     ],
     "lib": [
       "es5",

@@ -4,19 +4,19 @@ import {
   PlaceholderContent,
   PlaceholderName
 } from '@microsoft/sp-application-base';
+import { IGroup } from "./components/interfaces/IGroupProps";
+import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 import * as strings from 'FooterEditorApplicationCustomizerStrings';
-import { IFooterProps } from './components/IFooterProps';
-import Footer from "./components/Footer";
+import styles from './components/FooterStyles.module.scss';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { IGroup } from "./components/IGroupProps";
-import { SPHttpClient, SPHttpClientResponse, SPHttpClientConfiguration } from '@microsoft/sp-http';
-export interface IFooterEditorAppCustomizerApplicationCustomizerProperties { }
-import styles from './components/FooterStyles.module.scss';
+import { IFooterProps } from './components/interfaces/IFooterProps';
+import Footer from "./components/Footer";
 
+export interface IFooterEditorApplicationCustomizerProperties {}
 
-export default class FooterEditorAppCustomizerApplicationCustomizer
-  extends BaseApplicationCustomizer<IFooterEditorAppCustomizerApplicationCustomizerProperties> {
+export default class FooterEditorApplicationCustomizer
+  extends BaseApplicationCustomizer<IFooterEditorApplicationCustomizerProperties> {
   private bottomPlaceholder: PlaceholderContent | undefined;
   private data: Array<Array<IGroup>> = [];
   @override
@@ -30,8 +30,7 @@ export default class FooterEditorAppCustomizerApplicationCustomizer
           let webparts: Array<any> = content.filter(item => item.webPartId === "9738428e-ead4-42f8-a420-f7d2467761a8");
           webparts.forEach((webpart: any) => {
             this.data.push(webpart.webPartData.properties.groups);
-          });
-          debugger;
+          });          
           this.context.placeholderProvider.changedEvent.add(this, this.renderFooter);
         });
       });

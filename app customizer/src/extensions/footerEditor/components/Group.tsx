@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './FooterStyles.module.scss';
-import { IGroupProps } from './IGroupProps';
+import { IGroupProps } from './interfaces/IGroupProps';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 
 export default class Group extends React.Component<IGroupProps, {}> {

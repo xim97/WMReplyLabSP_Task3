@@ -1,15 +1,15 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "footereditorclientsidesolution",
-    "id": "d241172a-bd26-43f3-9e0e-5f62d547786b",
+    "name": "footer-editor-client-side-solution",
+    "id": "4cef1f07-8ba3-4fcd-a21b-12299a139727",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "features": [
       {
         "title": "Application Extension - Deployment of custom action.",
         "description": "Deploys a custom action with ClientSideComponentId association",
-        "id": "7112110f-6393-490b-b21d-5d6afc11e3a4",
+        "id": "18d0aa24-ebce-410f-8cb7-a59d0e5a3a42",
         "version": "1.0.0.0",
         "assets": {
           "elementManifests": [
@@ -21,6 +21,6 @@
     ]
   },
   "paths": {
-    "zippedPackage": "solution/footereditor.sppkg"
+    "zippedPackage": "solution/footer-editor.sppkg"
   }
 }

@@ -1,4 +1,4 @@
-## footereditor
+## footer-editor
 
 This is where you include your WebPart documentation.
 
