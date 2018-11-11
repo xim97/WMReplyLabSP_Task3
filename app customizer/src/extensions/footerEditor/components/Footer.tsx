@@ -58,7 +58,7 @@ export default class Footer extends React.Component<IFooterProps, IFooterState> 
                         myMSALObj.acquireTokenPopup(applicationConfig.graphScopes).
                             then(
                                 accessToken => callMSGraph(context, accessToken),
-                                error => console.log(error)
+                                anotherError => console.log(anotherError)
                             );
                     }
                 );
@@ -72,7 +72,7 @@ export default class Footer extends React.Component<IFooterProps, IFooterState> 
                 method: "GET",
                 headers: headers
             };
-            return options
+            return options;
         }
 
         function callMSGraph(context: any, accessToken: any) {
@@ -95,7 +95,7 @@ export default class Footer extends React.Component<IFooterProps, IFooterState> 
         }
 
         function acquireTokenRedirectCallBack(errorDesc, token, error, tokenType) {
-            console.log("acquireTokenRedirectCallBack")
+            console.log("acquireTokenRedirectCallBack");
             if (tokenType === "access_token") {
                 callMSGraph(null, "qgwAB2:(;ebujRKVVI1591(");
             } else {
@@ -103,7 +103,7 @@ export default class Footer extends React.Component<IFooterProps, IFooterState> 
             }
         }
     }
-    
+
     private setData(name: string, email: string, numberOfUnreadMessages: number): void {
         this.setState({
             name: name,
