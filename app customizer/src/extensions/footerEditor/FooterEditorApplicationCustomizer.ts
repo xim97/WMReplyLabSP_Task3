@@ -13,14 +13,20 @@ import * as ReactDOM from 'react-dom';
 import { IFooterProps } from './components/interfaces/IFooterProps';
 import Footer from "./components/Footer";
 
-export interface IFooterEditorApplicationCustomizerProperties {}
+export interface IFooterEditorApplicationCustomizerProperties { }
 
 export default class FooterEditorApplicationCustomizer
   extends BaseApplicationCustomizer<IFooterEditorApplicationCustomizerProperties> {
   private bottomPlaceholder: PlaceholderContent | undefined;
   private data: Array<Array<IGroup>> = [];
+  private applicationConfig: any = {};
   @override
   public onInit(): Promise<void> {
+    this.applicationConfig = {
+      clientID: "cbcd3a24-ecda-4e97-8df6-9debe6a6da69",
+      graphScopes: ["user.read", "mail.read"],
+      graphEndpoints: ["https://graph.microsoft.com/v1.0/me", "https://graph.microsoft.com/v1.0/me/messages"]
+    };
 
     this.context.spHttpClient.get(`${this.context.pageContext.web.absoluteUrl}/sitepages/home.aspx/_api/web/GetClientSideWebParts`,
       SPHttpClient.configurations.v1)
@@ -30,7 +36,7 @@ export default class FooterEditorApplicationCustomizer
           let webparts: Array<any> = content.filter(item => item.webPartId === "9738428e-ead4-42f8-a420-f7d2467761a8");
           webparts.forEach((webpart: any) => {
             this.data.push(webpart.webPartData.properties.groups);
-          });          
+          });
           this.context.placeholderProvider.changedEvent.add(this, this.renderFooter);
         });
       });
@@ -56,7 +62,8 @@ export default class FooterEditorApplicationCustomizer
           const footer: React.ReactElement<IFooterProps> = React.createElement(
             Footer,
             {
-              data: this.data
+              data: this.data,
+              applicationConfig: this.applicationConfig
             }
           );
           ReactDOM.render(footer, this.bottomPlaceholder.domElement);
