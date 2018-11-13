@@ -89,7 +89,7 @@ export default class Footer extends React.Component<IFooterProps, IFooterState> 
             fetch(applicationConfig.graphEndpoints[1], options)
                 .then(response => response.json())
                 .then(data => {
-                    numberOfUnreadMessages = data.value.filter(letter => !letter.isRead).length;
+                    numberOfUnreadMessages = data.value.length;                    
                     context.setData(name, email, numberOfUnreadMessages);
                 });
         }
@@ -138,7 +138,7 @@ export default class Footer extends React.Component<IFooterProps, IFooterState> 
                         </li>
                     </ul>
                     {
-                        this.props.data[this.state.pageNumber] !== undefined && this.props.data[this.state.pageNumber].length > 0 &&
+                        this.props.data[this.state.pageNumber] !== undefined && this.props.data.length > 1 &&
                         <div className={styles.rowCenter}>
                             <button
                                 onClick={this.handleClickPrevButton}

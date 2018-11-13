@@ -16,7 +16,7 @@ export default class Group extends React.Component<IGroupProps, {}> {
                                     <a
                                         target={link.newTab ? "_blank" : ""}
                                         title={link.hoverText}
-                                        href={"https://" + link.url}
+                                        href={link.url.indexOf("https://") !== -1 ? link.url : `https://${link.url}`}
                                     >
                                         {
                                             link.fabricIcon !== undefined && <Icon iconName={link.fabricIcon} />
