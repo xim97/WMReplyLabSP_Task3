@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ILinksProps } from "./interfaces/ILinksProps";
 import { ILinksState } from "./interfaces/ILinkState";
 import EditLink from "./EditLink";
+import styles from './FooterEditorWebPart.module.scss';
 
 export default class Links extends React.Component<ILinksProps, ILinksState> {
     constructor(props) {
@@ -37,7 +38,7 @@ export default class Links extends React.Component<ILinksProps, ILinksState> {
                     {
                         this.props.group.links.map((link, linkIndex) => {
                             return (
-                                <li>
+                                <li className={styles.row}>
                                     <p>{link.title} {link.url} {link.hoverText} {link.fabricIcon}</p>
                                     <button
                                         id={this.props.index + ":" + linkIndex}
@@ -48,17 +49,22 @@ export default class Links extends React.Component<ILinksProps, ILinksState> {
                                         onClick={(event) => this.props.handleClickDeleteLinkButton(event)}
                                     >Delete</button>
                                     {
-                                        linkIndex !== 0 && <button
-                                            id={this.props.index + ":" + linkIndex}
-                                            onClick={(event) => this.props.handleClickUpButton(event)}
-                                        >Up</button>
+                                        this.state.editingLinkIndex === -1 && <div className={styles.row}>
+                                            {
+                                                linkIndex !== 0 && <button
+                                                    id={this.props.index + ":" + linkIndex}
+                                                    onClick={(event) => this.props.handleClickUpButton(event)}
+                                                >Up</button>
+                                            }
+                                            {
+                                                linkIndex !== this.props.group.links.length - 1 && <button
+                                                    id={this.props.index + ":" + linkIndex}
+                                                    onClick={(event) => this.props.handleClickDownButton(event)}
+                                                >Down</button>
+                                            }
+                                        </div>
                                     }
-                                    {
-                                        linkIndex !== this.props.group.links.length - 1 && <button
-                                            id={this.props.index + ":" + linkIndex}
-                                            onClick={(event) => this.props.handleClickDownButton(event)}
-                                        >Down</button>
-                                    }
+
                                 </li>
                             );
                         })

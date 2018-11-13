@@ -9,7 +9,6 @@ import {
   IPropertyPanePageHeader,
   PropertyPaneButton,
   PropertyPaneButtonType,
-  PropertyPaneCheckbox,
   IPropertyPaneDropdownOption,
   IPropertyPaneField
 } from '@microsoft/sp-webpart-base';
@@ -17,10 +16,11 @@ import { PropertyFieldMultiSelect } from '@pnp/spfx-property-controls/lib/Proper
 import { PropertyFieldCollectionData, CustomCollectionFieldType, ICustomCollectionField } from '@pnp/spfx-property-controls/lib/PropertyFieldCollectionData';
 import { PropertyFieldOrder } from '@pnp/spfx-property-controls/lib/PropertyFieldOrder';
 import { orderedLinks } from "./components/orderedLinks";
-
+import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 import * as strings from 'FooterEditorWebPartWebPartStrings';
 import FooterEditorWebPart from './components/FooterEditorWebPart';
 import { IFooterEditorWebPartProps } from './components/interfaces/IFooterEditorWebPartProps';
+import * as $ from 'jquery'
 
 export interface IFooterEditorWebPartWebPartProps {
   newGroupTitle: string;
@@ -94,7 +94,7 @@ export default class FooterEditorWebPartWebPart extends BaseClientSideWebPart<IF
         linkIndex < this.properties.groups[groupIndex].links.length;
         linkIndex++) {
         let currentLink: ILink = this.properties.groups[groupIndex].links[linkIndex];
-        for (var currentLinkProperty in currentLink) {         
+        for (var currentLinkProperty in currentLink) {
           if (currentLink[currentLinkProperty] !== undefined &&
             currentLink[currentLinkProperty] !== "" &&
             this.properties.groups[groupIndex].properties.indexOf(currentLinkProperty) === -1) {

@@ -123,6 +123,14 @@ export default class EditLink extends React.Component<IEditLinkProps, IEditLinkS
                 >
                     Save changes
                 </button>
+                <button
+                    id={this.props.index + ":" + this.props.editingLinkIndex}
+                    onClick={() => {                       
+                        this.props.resetEditingLinkIndex();
+                    }}
+                >
+                    Reset changes
+                </button>
             </div>
         );
     }
