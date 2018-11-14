@@ -1,4 +1,6 @@
 export interface IFooterProps {
   data: Array<any>;
-  applicationConfig: any;
+  name: string;
+  email: string;
+  numberOfUnreadMessages: number;
 }

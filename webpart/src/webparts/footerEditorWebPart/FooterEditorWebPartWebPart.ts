@@ -20,7 +20,6 @@ import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 import * as strings from 'FooterEditorWebPartWebPartStrings';
 import FooterEditorWebPart from './components/FooterEditorWebPart';
 import { IFooterEditorWebPartProps } from './components/interfaces/IFooterEditorWebPartProps';
-import * as $ from 'jquery'
 
 export interface IFooterEditorWebPartWebPartProps {
   newGroupTitle: string;
